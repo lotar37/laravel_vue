@@ -1,6 +1,6 @@
 <template>
     <div>
-        <SinglePostComponent></SinglePostComponent>
+
         <CreateComponent></CreateComponent>
 <!--        <table class="table">-->
 <!--            <thead>-->

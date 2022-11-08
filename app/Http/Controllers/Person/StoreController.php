@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class StoreController extends Controller
 {
+//    private array $props = [];
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
