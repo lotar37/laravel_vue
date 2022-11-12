@@ -21,11 +21,11 @@
 </head>
 <body>
     <div id="app">
-        <post-component></post-component>
 
-{{--        <main class="py-4">--}}
-{{--            @yield('content')--}}
-{{--        </main>--}}
+
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
 </body>
 </html>
