@@ -12,8 +12,8 @@
             </thead>
             <tbody>
             <template v-for="person in people">
-            <ShowComponent :person="person"></ShowComponent>
-            <EditComponent :person="person" :ref="`edit_${person.id}`"></EditComponent>
+                <ShowComponent :person="person"></ShowComponent>
+                <EditComponent :person="person" :ref="`edit_${person.id}`"></EditComponent>
             </template>
             </tbody>
         </table>
@@ -26,16 +26,16 @@ import ShowComponent from "./ShowComponent";
 
 export default {
     name: "IndexComponent",
-    data(){
-        return{
-            people:null,
-            editPersonId:null,
-            name:'',
-            age:null,
-            job:'',
+    data() {
+        return {
+            people: null,
+            editPersonId: null,
+            name: '',
+            age: null,
+            job: '',
         }
     },
-    components:{
+    components: {
         EditComponent,
         ShowComponent,
     },
@@ -43,46 +43,23 @@ export default {
         this.getPeople();
         this.$parent.parentLog();
     },
-    methods:{
-        getPeople(){
+    methods: {
+        getPeople() {
             axios.get('/api/people')
                 .then(res => {
                     this.people = res.data;
                 })
         },
-        updatePeople(id){
-            this.editPersonId = null;
-            axios.patch(`/api/people/${id}`,{name:this.name, age:this.age, job:this.job})
-                .then(res => {
-                    this.getPeople()
-                })
-        },
-        deletePeople(id){
-            this.editPersonId = null;
-            axios.delete(`/api/people/${id}`)
-                .then(res => {
-                    this.getPeople()
-                })
-        },
-        changeEditPersonId(id, name,age,job){
-            this.editPersonId = id;
-            console.log(this.$refs);
-            let editName = `edit_${id}`;
-            let fullEditName = this.$refs[`edit_${id}`][0];
-            fullEditName.name = name;
-            fullEditName.age = age;
-            fullEditName.job = job;
 
-        },
-
-        isEdit(id){
+        isEdit(id) {
             return this.editPersonId === id;
         },
-        indexLog(){
+
+        indexLog() {
             console.log("this is index component");
         },
     }
- }
+}
 </script>
 
 <style scoped>

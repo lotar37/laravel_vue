@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        -
         <CreateComponent ref="create"></CreateComponent>
         <IndexComponent ref="index"></IndexComponent>
     </div>
@@ -14,8 +14,8 @@ import IndexComponent from "./IndexComponent";
 export default {
     name: "PostComponent",
 
-    data(){
-        return{
+    data() {
+        return {
             persons: null
 
         }
@@ -24,10 +24,10 @@ export default {
         //console.log(this.$refs.index.indexLog());
     },
 
-    methods:{
-        getPersons(){
+    methods: {
+        getPersons() {
             axios.get('/persons')
-                .then( res => {
+                .then(res => {
                         this.persons = res.data
                     }
                 )
@@ -38,10 +38,9 @@ export default {
         },
     },
 
-    computed:{
-    },
+    computed: {},
 
-    components : {
+    components: {
         CreateComponent,
         IndexComponent,
 

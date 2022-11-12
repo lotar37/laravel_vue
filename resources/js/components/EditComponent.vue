@@ -14,7 +14,7 @@
 <script>
 export default {
     name: "EditComponent",
-    props:["person"],
+    props: ["person"],
     data(){
         return{
             name:'',
