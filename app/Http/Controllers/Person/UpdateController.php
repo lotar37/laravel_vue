@@ -4,15 +4,17 @@ namespace App\Http\Controllers\Person;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Person\StoreRequest;
+use App\Http\Requests\Person\UpdateRequest;
 use App\Models\Person;
 use Illuminate\Http\Request;
 
-class StoreController extends Controller
+class UpdateController extends Controller
 {
 //    private array $props = [];
-    public function __invoke(StoreRequest $request)
+    public function __invoke(UpdateRequest $request, Person $person)
     {
         $data = $request->validated();
-        return Person::create($data);
+        $person->update($data);
+        return $person;
     }
 }

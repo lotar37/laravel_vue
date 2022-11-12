@@ -1,32 +1,16 @@
 <template>
     <div>
 
-        <CreateComponent></CreateComponent>
-<!--        <table class="table">-->
-<!--            <thead>-->
-<!--            <tr>-->
-<!--                <th scope="col">#</th>-->
-<!--                <th scope="col">Имя</th>-->
-<!--                <th scope="col">Возраст</th>-->
-<!--                <th scope="col">Работа</th>-->
-<!--            </tr>-->
-<!--            </thead>-->
-<!--            <tbody>-->
-<!--            <tr v-for="person in persons">-->
-<!--                <th scope="row">{{ person.id }}</th>-->
-<!--                <td>{{ person.name }}</td>-->
-<!--                <td>{{ person.age }}</td>-->
-<!--                <td>{{ person.job }}</td>-->
-<!--            </tr>-->
-
-<!--            </tbody>-->
-<!--        </table>-->
+        <CreateComponent ref="create"></CreateComponent>
+        <IndexComponent ref="index"></IndexComponent>
     </div>
 </template>
 
 <script>
-import SinglePostComponent from "./SinglePostComponent";
 import CreateComponent from "./CreateComponent";
+import IndexComponent from "./IndexComponent";
+
+
 export default {
     name: "PostComponent",
 
@@ -37,7 +21,7 @@ export default {
         }
     },
     mounted() {
-        this.getPersons();
+        //console.log(this.$refs.index.indexLog());
     },
 
     methods:{
@@ -47,15 +31,20 @@ export default {
                         this.persons = res.data
                     }
                 )
-        }
+        },
+
+        parentLog() {
+            console.log("this is post component");
+        },
     },
 
     computed:{
     },
 
     components : {
-        SinglePostComponent,
         CreateComponent,
+        IndexComponent,
+
     }
 }
 </script>
