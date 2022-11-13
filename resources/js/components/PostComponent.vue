@@ -1,6 +1,6 @@
 <template>
 <div>
-    Post component
+    this is post component
 </div>
 </template>
 

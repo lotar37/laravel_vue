@@ -10,12 +10,14 @@ export default new VueRouter({
     mode: 'history',
     routes:[
         {
-            path:"/posts",
-            component: PostComponent,
+            path:'/posts',
+            component: PostComponent
         },
         {
-            path:"/tags",
-            component: TagComponent,
+            path:'/tags',
+            component: TagComponent
         },
     ]
-});
+})
+
+
