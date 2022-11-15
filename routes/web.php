@@ -19,4 +19,4 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/{page}','IndexController');
+Route::get('/{page}','IndexController')->where('page','.*');
