@@ -17,7 +17,7 @@
             <td>{{ person.age }}</td>
             <td>{{ person.job }}</td>
             <td>
-            <router-link :to="{name:'person.edit', params:{id:person.id}}">Edit</router-link>
+            <router-link :to="{name:'person.edit', params:{id:person.id}}" class="btn btn-outline-success">Edit</router-link>
             </td>
            <td>
                <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger">Delete</a>
@@ -47,11 +47,15 @@ export default {
         getPeople(){
             axios.get('/api/people')
                 .then(res => {
-                    this.people = res.data;
+                    console.log(res.data.data);
+                    this.people = res.data.data;
                 })
+                .catch(
+                    error => console.log(error)
+                )
         },
         deletePerson(id){
-            axios.delete('/api/people/'+id)
+            axios.delete(`/api/people/${id}`)
                 .then(
                     res => {
                         this.getPeople()
