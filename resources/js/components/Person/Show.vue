@@ -21,7 +21,7 @@ export default {
         }
     },
     mounted() {
-      this.getPerson()
+      this.$store.dispatch('getPerson',this.$route.params.id)
     },
 
     methods:{

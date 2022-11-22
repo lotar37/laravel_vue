@@ -47,7 +47,6 @@ export default {
         getPeople(){
             axios.get('/api/people')
                 .then(res => {
-                    console.log(res.data.data);
                     this.people = res.data.data;
                 })
                 .catch(

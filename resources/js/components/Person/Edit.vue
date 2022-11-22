@@ -19,16 +19,13 @@
 <script>
 export default {
     name: "Edit",
-    data(){
-        return {
-            person:null,
-            name: null,
-            age: null,
-            job: null
-        }
-    },
     mounted() {
-        this.getPerson()
+        this.$store.dispatch('getPerson',this.$route.params.id)
+    },
+    computed:{
+        person(){
+            return this.$store.getters.person
+        }
     },
     methods:{
         getPerson(){
@@ -36,14 +33,11 @@ export default {
                 .then(
                     res => {
                         this.person = res.data.data
-                        // this.name = res.data.name;
-                        // this.age = res.data.age;
-                        // this.job = res.data.job;
-                    }
+                     }
                 )
         },
         updatePerson(){
-            axios.patch(`/api/people/${this.$route.params.id}`, {name:this.name, age:this.age, job:this.job,})
+            axios.patch(`/api/people/${this.$route.params.id}`, {name:this.person.name, age:this.person.age, job:this.person.job,})
                 .then(
                     this.$router.push({name: 'person.show', params:{id:this.$route.params.id}})
                 )
