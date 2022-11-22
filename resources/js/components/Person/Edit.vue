@@ -1,5 +1,5 @@
 <template>
-    <div class="w-25">
+    <div class="w-25" v-if="person">
         <div>
             <input type="text" v-model="person.name" placeholder="name" class="form-control mb-3">
         </div>
