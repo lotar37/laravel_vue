@@ -10,7 +10,7 @@
             <input type="text" v-model="person.job" placeholder="job" class="form-control mb-3">
         </div>
         <div>
-            <input @click.prevent="updatePerson" type="submit" value="Update" class="btn btn-success">
+            <input :disabled="!isDisabled" @click.prevent="$store.dispatch('updatePerson',{name:person.name, age:person.age, job:person.job,id:person.id})" type="submit" value="Update" class="btn btn-success">
         </div>
     </div>
 
@@ -25,25 +25,12 @@ export default {
     computed:{
         person(){
             return this.$store.getters.person
+        },
+        isDisabled(){
+            return this.person.age && this.person.job && this.person.name
         }
     },
-    methods:{
-        getPerson(){
-            axios.get(`/api/people/${this.$route.params.id}`)
-                .then(
-                    res => {
-                        this.person = res.data.data
-                     }
-                )
-        },
-        updatePerson(){
-            axios.patch(`/api/people/${this.$route.params.id}`, {name:this.person.name, age:this.person.age, job:this.person.job,})
-                .then(
-                    this.$router.push({name: 'person.show', params:{id:this.$route.params.id}})
-                )
 
-        }
-    }
 }
 </script>
 

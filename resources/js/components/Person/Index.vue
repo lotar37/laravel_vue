@@ -19,9 +19,8 @@
             <td>
             <router-link :to="{name:'person.edit', params:{id:person.id}}" class="btn btn-outline-success">Edit</router-link>
             </td>
-           <td>
-               <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger">Delete</a>
-
+            <td>
+               <a href="#" @click.prevent="$store.dispatch('deletePerson',person.id)" class="btn btn-outline-danger">Delete</a>
             </td>
 
         </tr>
@@ -33,35 +32,14 @@
 <script>
 export default {
     name: "Index",
-    data(){
-        return {
-            people: null
+    computed:{
+        people(){
+            return this.$store.getters.people
         }
-
-
     },
     mounted() {
-        this.getPeople()
+        this.$store.dispatch('getPeople')
     },
-    methods:{
-        getPeople(){
-            axios.get('/api/people')
-                .then(res => {
-                    this.people = res.data.data;
-                })
-                .catch(
-                    error => console.log(error)
-                )
-        },
-        deletePerson(id){
-            axios.delete(`/api/people/${id}`)
-                .then(
-                    res => {
-                        this.getPeople()
-                    }
-                )
-        }
-    }
 }
 </script>
 
